@@ -1,0 +1,25 @@
+.header{
+    color:  blue;
+  }
+
+.success{
+    background-color: black;
+    color: green;
+}
+.error{
+    background-color: black;
+    color:red;
+}
+
+.student table{
+    border: 2px solid #ccc;
+    width: 200px;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.student table td,tr{
+    border: 1px solid #ccc;
+    padding: 3px 10px;
+}
+
