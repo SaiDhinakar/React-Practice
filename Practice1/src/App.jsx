@@ -9,6 +9,7 @@ import OneofTypesColors from "./components/OneofTypesColors";
 
 import LearnComponents from "./components/LearnComponents"
 import Header from "./components/Header"
+import { Fragment } from "react";
 
 function App() {
   const fruits = [
