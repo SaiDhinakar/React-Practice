@@ -1,24 +1,27 @@
 import { useState } from "react";
+import Loading from "./Loading";
 
 const QrCode = () => {
-  const [img, Setimg] = useState("");
+  const [img, SetImg] = useState("");
   const [loading, Setloading] = useState(false);
   const [qrData, SetQrData] = useState("Scan me!");
   const [qrSize, SetQrSize] = useState("150");
-  async function generateQR() {
+  function generateQR() {
     Setloading(true);
-    const size = 150;
-    const data = "sai";
+    SetImg("");
     try {
       const url = `https://api.qrserver.com/v1/create-qr-code/?size=${qrSize}x${qrSize}&data=${encodeURIComponent(
         qrData
       )}`;
-      Setimg(url);
+      setTimeout(() => {
+        SetImg(url);
+        Setloading(false);
+      }, 2000);
+      
     } catch (error) {
       console.log("Error generating QR code:", error);
-    } finally {
       Setloading(false);
-    }
+    } 
   }
   function downloadQR() {
     fetch(img)
@@ -38,8 +41,8 @@ const QrCode = () => {
   return (
     <div className="app-container">
       <h1>QR CODE GENERATOR</h1>
-      {loading && <p>Please wait...</p>}
       {img && <img src={img} className="qr-code-image" />}
+      {loading && <Loading />}
       <div>
         <label htmlFor="dataInput" className="input-label">
           Data for QR code:
