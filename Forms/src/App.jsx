@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState({
+    name: "",
+    age: "",
+    dob: "",
+  });
 
+  function changeHandle(e) {
+    const { name, value } = e.target; // Destructure name and value from e.target
+    setUser({ ...user, [name]: value });
+  }
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Dynamic Form </h1>
+      <div className="form">
+        <form>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            value={user.name}
+            name="name"
+            id="name"
+            onChange={changeHandle}
+          />
+          <label htmlFor="age">Age</label>
+          <input
+            type="number"
+            value={user.age}
+            name="age"
+            id="age"
+            onChange={changeHandle}
+          />
+          <label htmlFor="dob">DOB</label>
+          <input
+            type="datetime"
+            value={user.dob}
+            name="dob"
+            id="dob"
+            onChange={changeHandle}
+          />
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="data">
+        <h1>User Data</h1>
+        <table>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Age</td>
+              <td>DOB</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{user.name}</td>
+              <td>{user.age}</td>
+              <td>{user.dob}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
